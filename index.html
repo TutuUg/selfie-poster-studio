@@ -331,7 +331,11 @@ input[type="range"] { width: 100%; accent-color: var(--accent); }
     chars.forEach(function (ch, i) { c.fillText(ch, cx, y); cx += widths[i] + sp; });
     return total;
   }
-  function layoutHeadline(maxW, maxSize, maxH) {
+    function layoutHeadline(maxW, maxSize, maxH) {
+    if (titleImg.complete && titleImg.naturalWidth) {
+      var s = Math.min(maxW / titleImg.naturalWidth, maxH / titleImg.naturalHeight);
+      return { img: true, lines: [1], w: titleImg.naturalWidth * s, h: titleImg.naturalHeight * s };
+    }
     var lines = state.headline.toUpperCase().split('\n').map(function (s) { return s.trim(); }).filter(Boolean).slice(0, 3);
     if (!lines.length) return { lines: [], size: 0, h: 0, lh: 0, cap: 0 };
     c.font = '900 100px ' + DISPLAY;
@@ -342,6 +346,11 @@ input[type="range"] { width: 100%; accent-color: var(--accent); }
     return { lines: lines, size: size, lh: lh, cap: cap, h: size * (cap + (lines.length - 1) * lh) };
   }
   function drawHeadline(L, x, y, color, align) {
+    if (L.img) {
+      var dx = align === 'center' ? x - L.w / 2 : align === 'right' ? x - L.w : x;
+      c.drawImage(titleImg, dx, y, L.w, L.h);
+      return;
+    }
     if (!L.lines.length) return;
     c.fillStyle = color; c.font = '900 ' + L.size + 'px ' + DISPLAY;
     c.textAlign = align; c.textBaseline = 'alphabetic';
@@ -619,6 +628,9 @@ input[type="range"] { width: 100%; accent-color: var(--accent); }
         setTimeout(function () { URL.revokeObjectURL(u); }, 4000);
       }
       say('Saved.');
+        var titleImg = new Image();
+        titleImg.onload = schedule;
+        titleImg.src = 'Gutsy-Half-Marathon-2027-Logo-Blue-8000px-transparent';
     } catch (err) {
       var code = err && err.code;
       if (code === 'declined') say('Save cancelled.');
