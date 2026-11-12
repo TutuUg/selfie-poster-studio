@@ -7,7 +7,7 @@ Everything runs in the browser. Photos are never uploaded anywhere.
 ## Features
 
 - Gutsy Half Marathon 2027 logo built into every poster
-- Event footer card with tab text, date, venue, race fee and a QR code
+- Fixed event footer card with tab text, date, venue, race fee and a QR code (not editable on the page)
 - Runner's name shown on a label over the photo
 - 4 templates: Night Market, Block Party, Sunrise, Gallery Label
 - 3 photo shapes: circle, arch, square
@@ -52,7 +52,7 @@ date: '23 JAN 2027', venue: 'Metroplex Naalya', fee: 'UGX 70,000',
 tagline: 'Chase your best.', qrUrl: 'https://bit.ly/3X5L7Cn',
 ```
 
-Edit those values and push. Anyone using the page can also change them in the Event footer section of the controls, but only for their own poster. The QR code is generated in the browser from `qrUrl`. Clear that field to hide the QR code.
+Edit those values and push. The footer is fixed on the page: there are no controls for it, so runners cannot change it. The QR code is generated in the browser from `qrUrl`. Set `qrUrl` to an empty string `''` to hide the QR code.
 
 ## Customize
 

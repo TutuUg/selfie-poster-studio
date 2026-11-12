@@ -211,31 +211,6 @@ input[type="range"] { width: 100%; accent-color: var(--accent); }
       </fieldset>
 
       <fieldset>
-        <legend>Event footer</legend>
-        <div class="field">
-          <label for="tagline">Tab text</label>
-          <input id="tagline" type="text" maxlength="28" autocomplete="off">
-        </div>
-        <div class="field">
-          <label for="date">Date</label>
-          <input id="date" type="text" maxlength="20" autocomplete="off">
-        </div>
-        <div class="field">
-          <label for="venue">Venue</label>
-          <input id="venue" type="text" maxlength="40" autocomplete="off">
-        </div>
-        <div class="field">
-          <label for="fee">Race fee</label>
-          <input id="fee" type="text" maxlength="20" autocomplete="off">
-        </div>
-        <div class="field">
-          <label for="qrUrl">QR code link</label>
-          <input id="qrUrl" type="text" inputmode="url" maxlength="200" autocomplete="off" spellcheck="false">
-        </div>
-        <p class="note">Clear the link to hide the QR code.</p>
-      </fieldset>
-
-      <fieldset>
         <legend>Size</legend>
         <div class="seg" role="group" aria-label="Poster size" data-key="size">
           <button type="button" data-val="square" aria-pressed="false">Square<small>1:1</small></button>
@@ -762,7 +737,7 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
     });
     sw.appendChild(b);
   });
-  [['kicker', 'kicker'], ['name', 'name'], ['tagline', 'tagline'], ['date', 'date'], ['venue', 'venue'], ['fee', 'fee'], ['qrUrl', 'qrUrl']].forEach(function (p) {
+  [['kicker', 'kicker'], ['name', 'name']].forEach(function (p) {
     var el = $(p[0]);
     el.value = state[p[1]];
     el.addEventListener('input', function () { state[p[1]] = el.value; schedule(); });
